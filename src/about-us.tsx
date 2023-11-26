@@ -5,7 +5,7 @@ const AboutUs: React.FC<{ className?: string }> = ({ className }) => {
    return (
       <div className={className}>
          <div
-            className="h-full w-full rounded-md bg-cover bg-center bg-no-repeat"
+            className="h-72 w-full rounded-md bg-cover bg-center bg-no-repeat md:h-full"
             style={{ backgroundImage: "url('/about-us.webp')" }}
          ></div>
          <div>

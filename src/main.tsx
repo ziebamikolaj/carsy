@@ -9,8 +9,8 @@ const App = () => (
    <React.StrictMode>
       <div className="flex flex-wrap justify-center bg-black">
          <Navbar className="fixed w-full bg-nav-bg" />
-         <AboutUs className="mx-0 mt-24 gap-x-5 p-12 text-lg md:grid md:grid-cols-2" />
-         <Service className="gap-x-12 p-12 text-lg md:grid md:grid-cols-2" />
+         <AboutUs className="mt-24 p-12 text-lg md:grid md:grid-cols-2 md:gap-x-5" />
+         <Service className="p-12 text-lg md:grid md:grid-cols-2 md:gap-x-12" />
       </div>
    </React.StrictMode>
 );

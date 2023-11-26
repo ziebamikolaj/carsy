@@ -14,12 +14,6 @@ const Service: React.FC<{ className?: string }> = ({ className }) => {
    return (
       <div className={className}>
          <div>
-            <div
-               className="hidden flex-1 bg-cover"
-               style={{ backgroundImage: "url('/about-us.webp')" }}
-               onClick={() => location.assign("/")}
-            ></div>
-
             <h2 className="mb-6 text-4xl font-bold text-yellow-500">
                {header}
             </h2>
@@ -34,7 +28,7 @@ const Service: React.FC<{ className?: string }> = ({ className }) => {
             </ul>
          </div>
          <div
-            className="rounded-md bg-cover bg-center bg-no-repeat"
+            className="h-72 rounded-md bg-cover bg-center bg-no-repeat md:h-full"
             style={{ backgroundImage: "url('/service-img.webp')" }}
          ></div>
       </div>
