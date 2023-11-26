@@ -4,10 +4,10 @@ export default {
    theme: {
       extend: {
          colors: {
-            background: "#1f1e1e",
+            "nav-bg": "#1f1e1e",
          },
          fontFamily: {
-            sans: ["Zilla Slab", "sans-serif"],
+            sans: ["Rajdhani", "sans-serif"],
          },
       },
    },
