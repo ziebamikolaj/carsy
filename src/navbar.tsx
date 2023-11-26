@@ -26,24 +26,23 @@ const Navbar: React.FC<{ className?: string }> = ({ className }) => {
                className="ml-8 mr-8 h-12 w-12 cursor-pointer md:hidden"
                onClick={toggleMenu}
             />
+            <ul
+               className={`flex h-screen flex-col items-center justify-center gap-4 p-2  ${
+                  menuOpen ? "flex" : "hidden"
+               } md:mr-6 md:flex md:h-full md:w-5/6 md:flex-row md:justify-end md:gap-0 md:p-0 md:text-xl`}
+            >
+               {menuItems.map((item, index) => (
+                  <li key={index} className="md:ml-4">
+                     <a
+                        href={item.href}
+                        className="text-white transition duration-300 hover:text-yellow-200"
+                     >
+                        {item.text}
+                     </a>
+                  </li>
+               ))}
+            </ul>{" "}
          </div>
-
-         <ul
-            className={`flex h-screen flex-col items-center justify-center gap-4 p-2 md:h-full ${
-               menuOpen ? "flex" : "hidden"
-            } md:mr-6 md:flex md:flex-row md:justify-end md:gap-0 md:p-0 md:text-xl`}
-         >
-            {menuItems.map((item, index) => (
-               <li key={index} className="md:ml-4">
-                  <a
-                     href={item.href}
-                     className="text-white transition duration-300 hover:text-yellow-200"
-                  >
-                     {item.text}
-                  </a>
-               </li>
-            ))}
-         </ul>
       </div>
    );
 };

@@ -5,16 +5,18 @@ const AboutUs: React.FC<{ className?: string }> = ({ className }) => {
    return (
       <div className={className}>
          <div
-            className="h-80 w-80 flex-1 bg-cover"
+            className="h-full w-full rounded-md bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/about-us.webp')" }}
          ></div>
-         <h2 className="mb-6 mt-4 text-4xl font-bold text-yellow-500 ">
-            O nas
-         </h2>
-         <p className="leading-loose text-gray-300">{bodyContent}</p>
-         <button className="mt-8 rounded-lg bg-yellow-600 px-6 py-3 font-semibold text-black shadow-lg transition duration-300 ease-in-out hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">
-            Zarezerwuj usługę
-         </button>
+         <div>
+            <h2 className="mb-6 mt-4 text-4xl font-bold text-yellow-500">
+               O nas
+            </h2>
+            <p className="leading-loose text-gray-300">{bodyContent}</p>
+            <button className="mt-8 rounded-lg bg-yellow-600 px-6 py-3 font-semibold text-black shadow-lg transition duration-300 ease-in-out hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">
+               Zarezerwuj usługę
+            </button>
+         </div>
       </div>
    );
 };
