@@ -8,6 +8,7 @@ export default {
          },
          fontFamily: {
             sans: ["Rajdhani", "sans-serif"],
+            abril: ["Abril Fatface", "serif"],
          },
       },
    },
