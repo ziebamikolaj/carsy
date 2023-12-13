@@ -11,7 +11,7 @@ import Contact from "./contact.tsx";
 
 const App = () => (
    <React.StrictMode>
-      <div className="flex w-full flex-wrap justify-center bg-black md:pl-36 md:pr-36">
+      <div className="bg-bg-primary text-font-primary flex w-full flex-wrap justify-center md:pl-36 md:pr-36">
          <Navbar className="fixed z-50 flex w-full scroll-mt-12 items-center justify-center bg-nav-bg pt-16 md:-ml-36 md:-mr-36 md:pt-2" />
          <AboutUs className="mt-20 w-full scroll-mt-12 p-6 text-lg md:grid md:grid-cols-2 md:gap-x-5" />
          <Service className="scroll-mt-12 p-6 text-lg md:grid md:grid-cols-2 md:gap-x-12" />

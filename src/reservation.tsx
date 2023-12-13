@@ -15,7 +15,7 @@ const Reservation = ({ className }: ReservationProps) => {
             onClick={handleReservation}
          >
             <div className="absolute inset-0 bg-black opacity-50"></div>
-            <h2 className="font-abril relative mb-6 py-12 text-center text-5xl tracking-wider text-white md:py-24">
+            <h2 className="relative mb-6 py-12 text-center font-abril text-5xl tracking-wider md:py-24">
                zarezerwuj wizytę
             </h2>
          </div>

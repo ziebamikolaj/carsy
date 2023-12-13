@@ -39,7 +39,7 @@ const Navbar = ({ className }: NavbarProps) => {
                <li key={index} className="md:ml-4">
                   <a
                      href={item.href}
-                     className="text-white transition duration-300 hover:text-yellow-200"
+                     className="transition duration-300 hover:text-yellow-200"
                      onClick={toggleMenu}
                   >
                      {item.text}

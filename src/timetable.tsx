@@ -34,7 +34,7 @@ const Timetable = ({ className }: TimetableProps) => {
                Godziny otwarcia
             </h2>
 
-            <ul className="text-white">{displayTimetable(timetable)}</ul>
+            <ul>{displayTimetable(timetable)}</ul>
          </div>
       </div>
    );

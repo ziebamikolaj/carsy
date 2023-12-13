@@ -60,7 +60,7 @@ const pricelist: PricelistItem[] = [
 ];
 const displayPricelist = (pricelist: PricelistItem[]) => {
    return (
-      <ul className="grid text-white md:grid-cols-2">
+      <ul className="grid md:grid-cols-2">
          {pricelist.map((item, index) => (
             <li
                key={index}

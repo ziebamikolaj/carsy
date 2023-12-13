@@ -13,7 +13,7 @@ const Service = ({ className }: serviceProps) => {
       <div className={className}>
          <div>
             <h2 className="mb-6 text-4xl font-bold text-yellow-500">Serwis</h2>
-            <h3 className="mb-6 text-2xl font-bold text-white">
+            <h3 className="mb-6 text-2xl font-bold">
                Witamy w Carsy, miejscu, w którym znajdziesz wszystkie naprawy
                samochodowe!
             </h3>
