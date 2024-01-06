@@ -5,12 +5,9 @@ const listContent = [
    "Rotacja opon",
    "płukanie płynu przekładni",
 ];
-interface serviceProps {
-   className: string;
-}
-const Service = ({ className }: serviceProps) => {
+const Service = () => {
    return (
-      <div className={className}>
+      <div className="scroll-mt-12 p-6 text-lg md:grid md:grid-cols-2 md:gap-x-12">
          <div>
             <h2 className="mb-6 text-4xl font-bold text-yellow-500">Serwis</h2>
             <h3 className="mb-6 text-2xl font-bold">

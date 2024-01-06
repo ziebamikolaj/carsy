@@ -1,7 +1,3 @@
-interface PricelistProps {
-   className: string;
-}
-
 interface PricelistItem {
    name: string;
    description: string;
@@ -77,9 +73,9 @@ const displayPricelist = (pricelist: PricelistItem[]) => {
    );
 };
 
-const Pricelist = ({ className }: PricelistProps) => {
+const Pricelist = () => {
    return (
-      <div className={className} id="pricing">
+      <div className="w-full scroll-mt-12 p-6" id="pricing">
          <div>
             <h2 className="mb-6 text-4xl font-bold text-yellow-500">Cennik</h2>
             {displayPricelist(pricelist)}

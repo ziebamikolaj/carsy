@@ -1,10 +1,9 @@
-interface AboutUsProps {
-   className: string;
-}
-
-const AboutUs = ({ className }: AboutUsProps) => {
+const AboutUs = () => {
    return (
-      <div className={className} id="about">
+      <div
+         className="mt-20 w-full scroll-mt-12 p-6 text-lg md:grid md:grid-cols-2 md:gap-x-5"
+         id="about"
+      >
          <div
             className="h-72 rounded-md bg-cover bg-center bg-no-repeat md:h-full"
             style={{ backgroundImage: "url('/about-us.webp')" }}

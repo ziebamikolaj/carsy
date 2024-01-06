@@ -1,7 +1,3 @@
-interface TimetableProps {
-   className: string;
-}
-
 interface TimetableItem {
    [key: string]: string;
 }
@@ -26,9 +22,12 @@ const displayTimetable = (timetable: TimetableItem[]) => {
    );
 };
 
-const Timetable = ({ className }: TimetableProps) => {
+const Timetable = () => {
    return (
-      <div className={className} id="timetable">
+      <div
+         className="w-full scroll-mt-12 p-6 text-lg md:text-2xl"
+         id="timetable"
+      >
          <div>
             <h2 className="mb-6 text-4xl font-bold text-yellow-500">
                Godziny otwarcia

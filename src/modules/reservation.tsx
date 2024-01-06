@@ -1,14 +1,13 @@
-interface ReservationProps {
-   className: string;
-}
-
-const Reservation = ({ className }: ReservationProps) => {
+const Reservation = () => {
    const handleReservation = () => {
       // Add logic for handling reservation here
    };
 
    return (
-      <div className={className} id="reservation">
+      <div
+         className="w-screen scroll-mt-16 text-lg md:-ml-36 md:-mr-36 md:text-3xl"
+         id="reservation"
+      >
          <div
             className="relative w-full cursor-pointer rounded-md bg-cover bg-center bg-no-repeat hover:brightness-110 hover:transition hover:duration-500 hover:ease-in-out"
             style={{ backgroundImage: "url('/reservation-section.webp')" }}

@@ -1,9 +1,9 @@
-interface ContactProps {
-   className: string;
-}
-const Contact = ({ className }: ContactProps) => {
+const Contact = () => {
    return (
-      <div className={className} id="contact">
+      <div
+         className="w-full scroll-mt-12 p-6 md:grid md:grid-cols-3 md:gap-x-5"
+         id="contact"
+      >
          <div
             className="h-72 w-full rounded-md bg-cover bg-top bg-no-repeat md:col-span-2 md:h-full"
             style={{ backgroundImage: "url('/contact.webp')" }}

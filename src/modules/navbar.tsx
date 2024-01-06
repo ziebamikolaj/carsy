@@ -1,24 +1,21 @@
-import "./index.css";
+import { Link } from "react-router-dom";
 import menuIcon from "/menu-icon.svg";
 import { useState } from "react";
 
 const menuItems = [
-   { href: "#about", text: "O nas" },
-   { href: "#timetable", text: "Godziny otwarcia" },
-   { href: "#reservation", text: "Rezerwacja" },
-   { href: "#pricing", text: "Cennik" },
-   { href: "#contact", text: "Kontakt" },
-   { href: "", text: "Zaloguj" }, // yet to be implemented
+   { href: "/#about", text: "O nas" },
+   { href: "/#timetable", text: "Godziny otwarcia" },
+   { href: "/#reservation", text: "Rezerwacja" },
+   { href: "/#pricing", text: "Cennik" },
+   { href: "/#contact", text: "Kontakt" },
+   { href: "/login", text: "Zaloguj" }, // yet to be implemented
 ];
-interface NavbarProps {
-   className: string;
-}
 
-const Navbar = ({ className }: NavbarProps) => {
+const Navbar = () => {
    const [menuOpen, setMenuOpen] = useState(false);
    const toggleMenu = () => setMenuOpen(menuOpen => !menuOpen);
    return (
-      <div className={className}>
+      <div className="fixed z-50 flex w-full scroll-mt-12 items-center justify-center bg-nav-bg pt-16 text-font-primary md:pt-2">
          <img
             src="/carsy-logo.webp"
             alt="Carsy logo"
@@ -37,16 +34,16 @@ const Navbar = ({ className }: NavbarProps) => {
          >
             {menuItems.map((item, index) => (
                <li key={index} className="md:ml-4">
-                  <a
-                     href={item.href}
+                  <Link
+                     to={item.href}
                      className="transition duration-300 hover:text-yellow-200"
                      onClick={toggleMenu}
                   >
                      {item.text}
-                  </a>
+                  </Link>
                </li>
             ))}
-         </ul>{" "}
+         </ul>
       </div>
    );
 };
