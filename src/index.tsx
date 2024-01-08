@@ -23,12 +23,12 @@ if (domNode) {
             <BrowserRouter>
                <Navbar />
                <Routes>
-                  <Route path="/" Component={Home}></Route>
-                  <Route path="/signin" Component={SignIn}></Route>
-                  <Route path="/signup" Component={SignUp}></Route>
-                  <Route path="/verify" Component={Verify}></Route>
-                  <Route path="/signout" Component={SignOut}></Route>
-                  <Route path="/account" Component={Account}></Route>
+                  <Route path="/" element={<Home />}></Route>
+                  <Route path="/signin" element={<SignIn />}></Route>
+                  <Route path="/signup" element={<SignUp />}></Route>
+                  <Route path="/verify" element={<Verify />}></Route>
+                  <Route path="/signout" element={<SignOut />}></Route>
+                  <Route path="/account" element={<Account />}></Route>
                </Routes>
                <ToastContainer position="bottom-right" theme="dark" />
             </BrowserRouter>

@@ -1,26 +1,32 @@
-// AuthContext.tsx
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useMemo, ReactNode } from "react";
 
-// Type for the context value
 type AuthContextType = {
    isLoggedIn: boolean;
    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// Create context with a default value
-export const AuthContext = createContext<AuthContextType>(null!);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Create a custom hook to use the auth context
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+   const context = useContext(AuthContext);
+   if (context === undefined) {
+      throw new Error("useAuth must be used within a AuthProvider");
+   }
+   return context;
+};
 
-// Provider component
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({
    children,
 }) => {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+   const contextValue = useMemo(
+      () => ({ isLoggedIn, setIsLoggedIn }),
+      [isLoggedIn]
+   );
+
    return (
-      <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <AuthContext.Provider value={contextValue}>
          {children}
       </AuthContext.Provider>
    );
