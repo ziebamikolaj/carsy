@@ -1,5 +1,5 @@
 // AuthContext.tsx
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 // Type for the context value
 type AuthContextType = {

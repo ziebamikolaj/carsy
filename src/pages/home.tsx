@@ -1,11 +1,11 @@
-import React from "react";
-import AboutUs from "../modules/about-us.tsx";
+import AboutUs from "../modules/about-us";
 import "./index.css";
-import Service from "../modules/service.tsx";
-import Timetable from "../modules/timetable.tsx";
-import Reservation from "../modules/reservation.tsx";
-import Pricelist from "../modules/price-list.tsx";
-import Contact from "../modules/contact.tsx";
+import Service from "../modules/service";
+import Timetable from "../modules/timetable";
+import Reservation from "../modules/reservation";
+import Pricelist from "../modules/price-list";
+import Contact from "../modules/contact";
+import * as React from "react";
 
 const Home = () => (
    <React.StrictMode>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -51,7 +51,7 @@ const VerifyEmail = () => {
             },
          },
          error: {
-            render({ data }) {
+            render({ data }: { data: Error }) {
                const error = data as Error;
                return error.message;
             },
