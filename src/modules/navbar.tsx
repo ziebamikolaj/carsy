@@ -51,12 +51,17 @@ const Navbar = () => {
    const menuItems = isLoggedIn ? menuItemsLogged : menuItemsNotLogged;
 
    return (
-      <div className="fixed z-50 flex w-full scroll-mt-12 items-center justify-center bg-nav-bg pt-16 text-font-primary md:pt-2">
+      <div
+         className={`fixed z-50 flex ${
+            menuOpen ? "h-full" : "h-auto"
+         } w-full scroll-mt-12 items-center justify-center bg-nav-bg pt-16 text-font-primary md:h-auto md:pt-2`}
+      >
          <HashLink to="/#home">
             <img
                src={logo}
                alt="Carsy logo"
                className="h-18 fixed left-0 top-0 ml-0.5 mt-1 w-64 md:static md:mt-0"
+               onClick={() => setMenuOpen(false)}
             />
          </HashLink>
          <img
@@ -76,6 +81,7 @@ const Navbar = () => {
                   <HashLink
                      to={item.href}
                      className="transition duration-300 hover:text-yellow-200"
+                     onClick={() => setMenuOpen(false)}
                   >
                      {item.text}
                   </HashLink>
