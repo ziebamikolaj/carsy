@@ -54,7 +54,7 @@ const SignIn = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center  text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Sign In</h2>
          <form
-            className="mb-4 rounded-xl bg-white px-8 pb-8 pt-6 shadow-md"
+            className="bg-bg-secondary mb-4 rounded-xl px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -65,7 +65,7 @@ const SignIn = () => {
                   Username
                </label>
                <input
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
+                  className="bg-input-dark focus:shadow-outline w-full appearance-none rounded  px-3 py-2 leading-tight shadow focus:outline-none"
                   id="username"
                   type="text"
                   value={username}
@@ -80,7 +80,7 @@ const SignIn = () => {
                   Password
                </label>
                <input
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
+                  className="bg-input-dark focus:shadow-outline w-full appearance-none rounded px-3 py-2 leading-tight shadow focus:outline-none"
                   id="password"
                   type="password"
                   value={password}

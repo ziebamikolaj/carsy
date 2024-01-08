@@ -63,7 +63,7 @@ const VerifyEmail = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Verify Email</h2>
          <form
-            className="mb-4 rounded-xl bg-white px-8 pb-8 pt-6 shadow-md"
+            className="bg-bg-secondary mb-4 rounded-xl  px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -71,7 +71,7 @@ const VerifyEmail = () => {
                   Email
                </label>
                <input
-                  className="focus:shadow-outline w-full rounded border px-3 py-2 leading-tight focus:outline-none"
+                  className="bg-input-dark focus:shadow-outline w-full rounded px-3 py-2 leading-tight focus:outline-none"
                   id="email"
                   type="email"
                   value={email}
@@ -83,7 +83,7 @@ const VerifyEmail = () => {
                   Verification Code
                </label>
                <input
-                  className={`w-full rounded border px-3 py-2 leading-tight focus:outline-none 
+                  className={`bg-input-dark w-full rounded px-3 py-2 leading-tight focus:outline-none 
                   
                   `}
                   id="code"

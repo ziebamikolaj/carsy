@@ -30,7 +30,7 @@ if (domNode) {
                   <Route path="/signout" Component={SignOut}></Route>
                   <Route path="/account" Component={Account}></Route>
                </Routes>
-               <ToastContainer position="bottom-right" />
+               <ToastContainer position="bottom-right" theme="dark" />
             </BrowserRouter>
             <ReactQueryDevtools initialIsOpen={false} />
          </QueryClientProvider>

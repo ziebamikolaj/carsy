@@ -70,7 +70,7 @@ const SignUp = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Sign Up</h2>
          <form
-            className="mb-4 rounded-xl bg-white px-8 pb-8 pt-6 shadow-md"
+            className="bg-bg-secondary mb-4 rounded-xl px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -81,7 +81,7 @@ const SignUp = () => {
                   Username
                </label>
                <input
-                  className="focus:shadow-outline w-full rounded border px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline bg-input-dark  w-full rounded  px-3 py-2 leading-tight focus:outline-none"
                   id="username"
                   type="text"
                   value={username}
@@ -93,7 +93,7 @@ const SignUp = () => {
                   Email
                </label>
                <input
-                  className="focus:shadow-outline w-full rounded border px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline bg-input-dark  w-full rounded  px-3 py-2 leading-tight focus:outline-none"
                   id="email"
                   type="email"
                   value={email}
@@ -108,7 +108,7 @@ const SignUp = () => {
                   Password
                </label>
                <input
-                  className="focus:shadow-outline w-full rounded border px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline bg-input-dark  w-full rounded px-3 py-2 leading-tight focus:outline-none"
                   id="password"
                   name="password"
                   type="password"
@@ -127,7 +127,7 @@ const SignUp = () => {
                   Confirm Password
                </label>
                <input
-                  className={`w-full rounded border px-3 py-2 leading-tight focus:outline-none ${
+                  className={`bg-input-dark w-full rounded  px-3 py-2 leading-tight focus:outline-none ${
                      passwordMatch ? "focus:shadow-outline" : "border-red-500"
                   }`}
                   id="confirmPassword"
