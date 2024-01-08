@@ -9,7 +9,10 @@ import Contact from "../modules/contact.tsx";
 
 const Home = () => (
    <React.StrictMode>
-      <div className="flex w-full flex-wrap justify-center bg-bg-primary text-font-primary md:pl-36 md:pr-36">
+      <div
+         className="flex w-full flex-wrap justify-center bg-bg-primary text-font-primary md:pl-36 md:pr-36"
+         id="home"
+      >
          <AboutUs />
          <Service />
          <Timetable />
