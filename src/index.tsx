@@ -3,13 +3,13 @@ import Navbar from "./modules/navbar";
 import Home from "./pages/home";
 import SignIn from "./pages/sign-in";
 import SignUp from "./pages/sign-up";
+import SignOut from "./pages/sign-out";
+import Verify from "./pages/verify";
+import Account from "./pages/account";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createRoot } from "react-dom/client";
 import { ToastContainer } from "react-toastify";
-import Verify from "./pages/verify";
-import Account from "./pages/account";
-import SignOut from "./pages/signout";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
