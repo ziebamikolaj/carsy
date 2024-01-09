@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext";
 
 type UserCredentials = {
    username: string;
    password: string;
 };
 
-const signIn = async (credentials: UserCredentials): Promise<any> => {
+const signIn = async (credentials: UserCredentials): Promise<string> => {
    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signin`, {
       method: "POST",
       headers: {
@@ -29,11 +27,12 @@ const signIn = async (credentials: UserCredentials): Promise<any> => {
 const SignIn = () => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
-   const mutation = useMutation<any, Error, UserCredentials>({
+   const queryClient = useQueryClient();
+
+   const mutation = useMutation<string, Error, UserCredentials>({
       mutationFn: signIn,
    });
    const navigate = useNavigate();
-   const { setIsLoggedIn } = useAuth();
 
    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -41,8 +40,8 @@ const SignIn = () => {
          pending: "Signing in...",
          success: {
             render() {
-               setIsLoggedIn(true);
                navigate("/account");
+               queryClient.invalidateQueries({ queryKey: ["authCheck"] });
                return "Signed in successfully!";
             },
          },
@@ -54,7 +53,7 @@ const SignIn = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center  text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Sign In</h2>
          <form
-            className="bg-bg-secondary mb-4 rounded-xl px-8 pb-8 pt-6 shadow-md"
+            className="mb-4 rounded-xl bg-bg-secondary px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -65,7 +64,7 @@ const SignIn = () => {
                   Username
                </label>
                <input
-                  className="bg-input-dark focus:shadow-outline w-full appearance-none rounded  px-3 py-2 leading-tight shadow focus:outline-none"
+                  className="focus:shadow-outline w-full appearance-none rounded bg-input-dark  px-3 py-2 leading-tight shadow focus:outline-none"
                   id="username"
                   type="text"
                   value={username}
@@ -80,7 +79,7 @@ const SignIn = () => {
                   Password
                </label>
                <input
-                  className="bg-input-dark focus:shadow-outline w-full appearance-none rounded px-3 py-2 leading-tight shadow focus:outline-none"
+                  className="focus:shadow-outline w-full appearance-none rounded bg-input-dark px-3 py-2 leading-tight shadow focus:outline-none"
                   id="password"
                   type="password"
                   value={password}

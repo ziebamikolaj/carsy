@@ -1,10 +1,10 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
 
 const handleSignOut = async () => {
-   const { setIsLoggedIn } = useAuth();
    const navigate = useNavigate();
+   const queryClient = useQueryClient();
 
    const response = await fetch(
       `${import.meta.env.VITE_API_URL}/auth/signout`,
@@ -15,8 +15,8 @@ const handleSignOut = async () => {
    );
 
    if (response.ok) {
-      setIsLoggedIn(false);
       toast.success("Signed out successfully!");
+      queryClient.invalidateQueries({ queryKey: ["authCheck"] });
       navigate("/");
    } else {
       throw new Error("Network response was not ok");

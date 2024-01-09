@@ -8,7 +8,7 @@ type VerifyEmailCredentials = {
 };
 const verifyEmail = async (
    credentials: VerifyEmailCredentials
-): Promise<any> => {
+): Promise<string> => {
    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/verify`, {
       method: "POST",
       headers: {

@@ -8,7 +8,9 @@ type UserRegisterCredentials = {
    password: string;
 };
 
-const signUp = async (credentials: UserRegisterCredentials): Promise<any> => {
+const signUp = async (
+   credentials: UserRegisterCredentials
+): Promise<string> => {
    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
       method: "POST",
       headers: {
@@ -70,7 +72,7 @@ const SignUp = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Sign Up</h2>
          <form
-            className="bg-bg-secondary mb-4 rounded-xl px-8 pb-8 pt-6 shadow-md"
+            className="mb-4 rounded-xl bg-bg-secondary px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -81,7 +83,7 @@ const SignUp = () => {
                   Username
                </label>
                <input
-                  className="focus:shadow-outline bg-input-dark  w-full rounded  px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline w-full  rounded bg-input-dark  px-3 py-2 leading-tight focus:outline-none"
                   id="username"
                   type="text"
                   value={username}
@@ -93,7 +95,7 @@ const SignUp = () => {
                   Email
                </label>
                <input
-                  className="focus:shadow-outline bg-input-dark  w-full rounded  px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline w-full  rounded bg-input-dark  px-3 py-2 leading-tight focus:outline-none"
                   id="email"
                   type="email"
                   value={email}
@@ -108,7 +110,7 @@ const SignUp = () => {
                   Password
                </label>
                <input
-                  className="focus:shadow-outline bg-input-dark  w-full rounded px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline w-full  rounded bg-input-dark px-3 py-2 leading-tight focus:outline-none"
                   id="password"
                   name="password"
                   type="password"
@@ -127,7 +129,7 @@ const SignUp = () => {
                   Confirm Password
                </label>
                <input
-                  className={`bg-input-dark w-full rounded  px-3 py-2 leading-tight focus:outline-none ${
+                  className={`w-full rounded bg-input-dark  px-3 py-2 leading-tight focus:outline-none ${
                      passwordMatch ? "focus:shadow-outline" : "border-red-500"
                   }`}
                   id="confirmPassword"
