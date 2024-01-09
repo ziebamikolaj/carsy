@@ -11,6 +11,7 @@ import Verify from "./pages/verify";
 import Account from "./pages/account";
 import SignOut from "./pages/signout";
 import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
 const queryClient = new QueryClient();
 

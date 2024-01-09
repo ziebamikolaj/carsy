@@ -1,5 +1,4 @@
 import AboutUs from "../modules/about-us";
-import "./index.css";
 import Service from "../modules/service";
 import Timetable from "../modules/timetable";
 import Reservation from "../modules/reservation";
