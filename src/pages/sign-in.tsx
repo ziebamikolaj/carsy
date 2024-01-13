@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 type UserCredentials = {
    username: string;
@@ -92,6 +93,17 @@ const SignIn = () => {
             >
                Sign In
             </button>
+            <div className="mt-2 ">
+               <p>Not signed up yet?</p>
+               <p>
+                  <HashLink
+                     className="ml-1 text-yellow-200 hover:text-yellow-300"
+                     to="/signup"
+                  >
+                     Sign Up
+                  </HashLink>
+               </p>
+            </div>
          </form>
       </div>
    );

@@ -1,18 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./modules/navbar";
-import Home from "./pages/home";
-import SignIn from "./pages/sign-in";
-import SignUp from "./pages/sign-up";
-import SignOut from "./pages/sign-out";
-import Verify from "./pages/verify";
-import Account from "./pages/account";
+import Navbar from "../modules/navbar";
+import Home from "./home";
+import SignIn from "./sign-in";
+import SignUp from "./sign-up";
+import SignOut from "./sign-out";
+import Verify from "./verify";
+import Account from "./account";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createRoot } from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./index.css";
-
+import "/index.css";
 const queryClient = new QueryClient();
 
 const domNode = document.getElementById("root");
