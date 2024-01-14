@@ -12,9 +12,9 @@ import { createRoot } from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "/index.css";
-import DodajSamochodPage from "./add-car";
-import TwojaHistoriaPage from "./history";
-import UmowWizytePage from "./set-appointment";
+import AddCar from "./add-car";
+import History from "./history";
+import SetAppointment from "./set-appointment";
 const queryClient = new QueryClient();
 
 const domNode = document.getElementById("root");
@@ -32,11 +32,12 @@ if (domNode) {
                <Route path="/signout" element={<SignOut />}></Route>
                <Route path="/account" element={<Account />}></Route>
                <Route
-                  path="/account/set-appointment"
-                  element={<UmowWizytePage />}
+                  path="/set-appointment"
+                  element={<SetAppointment />}
                ></Route>
-               <Route path="/add-car" element={<DodajSamochodPage />}></Route>
-               <Route path="/history" element={<TwojaHistoriaPage />}></Route>
+               <Route path="/add-car" element={<AddCar />}></Route>
+               <Route path="/history" element={<History />}></Route>
+
                <Route path="/" element={<Account />} />
             </Routes>
             <ToastContainer position="bottom-right" theme="dark" />

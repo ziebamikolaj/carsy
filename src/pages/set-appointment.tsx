@@ -1,174 +1,132 @@
-import { SetStateAction, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { HashLink } from "react-router-hash-link";
 
-const UmowWizytePage = () => {
+const SetAppointment = () => {
    const [formValues, setFormValues] = useState({
-      numerTelefonu: "",
-      data: "",
-      godzina: "",
-      markaSamochodu: "",
-      opisUsterki: "",
+      phoneNumber: "",
+      date: "",
+      time: "",
+      carModel: "",
+      issueDescription: "",
    });
 
    const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
-   const handleChange = e => {
-      const { name, value } = e.target;
-      setFormValues({
-         ...formValues,
-         [name]: value,
-      });
-
-      // Sprawdzanie, czy wszystkie pola są wypełnione
+   useEffect(() => {
       const areAllFieldsFilled = Object.values(formValues).every(
          field => field.trim() !== ""
       );
       setIsSubmitEnabled(areAllFieldsFilled);
+   }, [formValues]);
+
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFormValues(prevState => ({
+         ...prevState,
+         [name]: value,
+      }));
    };
 
-   const handleSubmit = async e => {
-      e.preventDefault();
-
-      // Wysyłanie danych do API
-      try {
-         const response = await fetch("URL_DO_TWOJEGO_API", {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formValues),
-         });
-
-         if (response.ok) {
-            console.log("Wizyta umówiona!");
-            // Dodaj kod obsługi, jeśli wysłanie danych powiodło się
-         } else {
-            console.error("Błąd podczas umawiania wizyty");
-            // Dodaj kod obsługi, jeśli wysłanie danych nie powiodło się
-         }
-      } catch (error) {
-         console.error("Błąd podczas wysyłania zapytania API:", error);
-         // Dodaj kod obsługi błędu połączenia
-      }
+   const handleSubmit = async () => {
+      // API request logic here...
    };
 
    return (
-      <div
-         className="relative flex min-h-screen items-center justify-center"
-         style={{
-            backgroundColor: "black",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-         }}
-      >
-         <form onSubmit={handleSubmit} className="w-full max-w-md">
-            <div className="left-0 top-0 mb-7 ml-0 mt-5">
-               <Link
-                  to="/account"
-                  className="rounded-full bg-yellow-700 px-4 py-2 text-lg font-bold text-white hover:bg-white hover:text-yellow-700 focus:outline-none"
-               >
-                  Powrót
-               </Link>
-            </div>
-            <div className="mb-4">
-               <label
-                  htmlFor="numerTelefonu"
-                  className="mb-2 block text-sm font-bold text-yellow-700"
-               >
+      <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
+         <div className="flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
+            <HashLink
+               to="/account"
+               className="mb-4 inline-block rounded bg-bg-secondary px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:opacity-50"
+            >
+               Powrót
+            </HashLink>
+
+            <form className="grid gap-4">
+               <label htmlFor="phoneNumber" className="text-sm font-bold">
                   Numer telefonu:
                </label>
                <input
                   type="text"
-                  id="numerTelefonu"
-                  name="numerTelefonu"
-                  value={formValues.numerTelefonu}
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={formValues.phoneNumber}
                   onChange={handleChange}
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-            </div>
 
-            <div className="mb-4">
-               <label
-                  htmlFor="data"
-                  className="mb-2 block text-sm font-bold text-yellow-700"
-               >
+               <label htmlFor="date" className="text-sm font-bold">
                   Data:
                </label>
                <input
                   type="text"
-                  id="data"
-                  name="data"
-                  value={formValues.data}
+                  id="date"
+                  name="date"
+                  value={formValues.date}
                   onChange={handleChange}
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-            </div>
 
-            <div className="mb-4">
-               <label
-                  htmlFor="godzina"
-                  className="mb-2 block text-sm font-bold text-yellow-700"
-               >
+               <label htmlFor="time" className="text-sm font-bold">
                   Godzina:
                </label>
                <input
                   type="text"
-                  id="godzina"
-                  name="godzina"
-                  value={formValues.godzina}
+                  id="time"
+                  name="time"
+                  value={formValues.time}
                   onChange={handleChange}
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-            </div>
 
-            <div className="mb-4">
-               <label
-                  htmlFor="markaSamochodu"
-                  className="mb-2 block text-sm font-bold text-yellow-700"
-               >
+               <label htmlFor="carModel" className="text-sm font-bold">
                   Marka i model samochodu:
                </label>
                <input
                   type="text"
-                  id="markaSamochodu"
-                  name="markaSamochodu"
-                  value={formValues.markaSamochodu}
+                  id="carModel"
+                  name="carModel"
+                  value={formValues.carModel}
                   onChange={handleChange}
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-            </div>
 
-            <div className="mb-4">
-               <label
-                  htmlFor="opisUsterki"
-                  className="mb-2 block text-sm font-bold text-yellow-700"
-               >
+               <label htmlFor="issueDescription" className="text-sm font-bold">
                   Krótki opis usterki:
                </label>
                <input
                   type="text"
-                  id="opisUsterki"
-                  name="opisUsterki"
-                  value={formValues.opisUsterki}
+                  id="issueDescription"
+                  name="issueDescription"
+                  value={formValues.issueDescription}
                   onChange={handleChange}
-                  className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-            </div>
 
-            <div className="mb-4 text-center">
-               <button
-                  type="submit"
-                  disabled={!isSubmitEnabled}
-                  className={`rounded-full bg-yellow-700 px-4 py-2 text-lg font-bold text-white hover:bg-white hover:text-yellow-700 focus:outline-none ${
-                     isSubmitEnabled ? "" : "cursor-not-allowed opacity-50"
-                  }`}
-               >
-                  Umów Wizytę
-               </button>
-            </div>
-         </form>
+               <div className="group relative">
+                  <button
+                     type="submit"
+                     disabled={!isSubmitEnabled}
+                     className={`mt-4 w-full rounded bg-bg-primary px-4 py-2 text-lg font-bold hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-nav-bg ${
+                        isSubmitEnabled ? "" : "cursor-not-allowed opacity-50"
+                     }`}
+                     onClick={e => {
+                        e.preventDefault();
+                        handleSubmit();
+                     }}
+                  >
+                     Umów Wizytę
+                  </button>
+
+                  {!isSubmitEnabled && (
+                     <div className="absolute -bottom-14 hidden rounded-md bg-black px-3 py-1 text-sm text-white group-hover:block">
+                        Proszę wypełnić wszystkie pola
+                     </div>
+                  )}
+               </div>
+            </form>
+         </div>
       </div>
    );
 };
 
-export default UmowWizytePage;
+export default SetAppointment;
