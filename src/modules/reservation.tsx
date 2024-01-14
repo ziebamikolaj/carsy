@@ -15,7 +15,7 @@ const Reservation = () => {
          >
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <h2 className="relative mb-6 py-12 text-center font-abril text-5xl tracking-wider md:py-24">
-               zarezerwuj wizytę
+               ZAREZERWUJ WIZYTĘ
             </h2>
          </div>
       </div>

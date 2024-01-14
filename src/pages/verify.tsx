@@ -8,7 +8,7 @@ type VerifyEmailCredentials = {
 };
 const verifyEmail = async (
    credentials: VerifyEmailCredentials
-): Promise<any> => {
+): Promise<string> => {
    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/verify`, {
       method: "POST",
       headers: {
@@ -63,7 +63,7 @@ const VerifyEmail = () => {
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center text-font-primary">
          <h2 className="mb-4 text-3xl font-bold">Verify Email</h2>
          <form
-            className="bg-bg-secondary mb-4 rounded-xl  px-8 pb-8 pt-6 shadow-md"
+            className="mb-4 rounded-xl bg-bg-secondary  px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
          >
             <div className="mb-4">
@@ -71,7 +71,7 @@ const VerifyEmail = () => {
                   Email
                </label>
                <input
-                  className="bg-input-dark focus:shadow-outline w-full rounded px-3 py-2 leading-tight focus:outline-none"
+                  className="focus:shadow-outline w-full rounded bg-input-dark px-3 py-2 leading-tight focus:outline-none"
                   id="email"
                   type="email"
                   value={email}
@@ -83,7 +83,7 @@ const VerifyEmail = () => {
                   Verification Code
                </label>
                <input
-                  className={`bg-input-dark w-full rounded px-3 py-2 leading-tight focus:outline-none 
+                  className={`w-full rounded bg-input-dark px-3 py-2 leading-tight focus:outline-none 
                   
                   `}
                   id="code"

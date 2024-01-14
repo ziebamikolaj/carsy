@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import logo from "/carsy-logo.webp";
 import menuIcon from "/menu-icon.svg";
-import { useAuth } from "../AuthContext";
+import { useQuery } from "@tanstack/react-query";
 
 const menuItemsNotLogged = [
    { href: "/#about", text: "O nas" },
@@ -26,28 +26,22 @@ const menuItemsLogged = [
 
 const Navbar = () => {
    const [menuOpen, setMenuOpen] = useState(false);
-   const { isLoggedIn, setIsLoggedIn } = useAuth();
-
    const toggleMenu = () => setMenuOpen(prevState => !prevState);
 
-   useEffect(() => {
-      const checkAuthStatus = async () => {
-         try {
-            const response = await fetch(
-               `${import.meta.env.VITE_API_URL}/auth/check`,
-               {
-                  credentials: "include",
-               }
-            );
-
-            setIsLoggedIn(response.ok);
-         } catch (error) {
-            console.error("Error checking auth status", error);
+   const { data: isLoggedIn } = useQuery({
+      queryKey: ["authCheck"],
+      queryFn: async () => {
+         const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/check`, {
+            credentials: "include",
+         });
+         if (res.ok) {
+            return true;
+         } else {
+            return false;
          }
-      };
+      },
+   });
 
-      checkAuthStatus();
-   }, []);
    const menuItems = isLoggedIn ? menuItemsLogged : menuItemsNotLogged;
 
    return (
