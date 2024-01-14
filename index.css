@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Rajdhani:wght@600&family=Zilla+Slab:wght@300;500&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+body {
+   background-color: #0a0b0d;
+}

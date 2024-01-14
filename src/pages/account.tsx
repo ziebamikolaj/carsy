@@ -4,6 +4,7 @@ const Account = () => {
    return (
       <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
          <h2 className="mb-6 mt-4 text-center text-6xl font-bold text-yellow-600">
+
             Witaj użytkowniku! (imie z API)
          </h2>
 
