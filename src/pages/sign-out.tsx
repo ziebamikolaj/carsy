@@ -27,7 +27,7 @@ const SignOut = () => {
    handleSignOut();
    return (
       <div className="te xt-font-primary flex min-h-screen flex-col items-center justify-center  bg-bg-primary  text-center">
-         <h2 className="mb-4 text-3xl font-bold">Signing out...</h2>
+         <h2 className="mb-4 text-3xl font-bold">Wylogowuje...</h2>
       </div>
    );
 };

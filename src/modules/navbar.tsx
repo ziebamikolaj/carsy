@@ -34,8 +34,9 @@ const Navbar = () => {
          const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/check`, {
             credentials: "include",
          });
+         const resText = await res.text();
          if (res.ok) {
-            return true;
+            return resText;
          } else {
             return false;
          }

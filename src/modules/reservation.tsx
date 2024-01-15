@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 const Reservation = () => {
+   const navigate = useNavigate();
+
    const handleReservation = () => {
-      // Add logic for handling reservation here
+      toast.info("Musisz najpierw się zalogować!");
+      navigate("/set-appointment");
    };
 
    return (

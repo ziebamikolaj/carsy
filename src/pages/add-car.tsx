@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import { toast } from "react-toastify";
 
 const AddCar = () => {
    const [formValues, setFormValues] = useState({
-      carModel: "",
+      id: 0,
+      make: "",
+      model: "",
       year: "",
-      color: "",
-      registrationNumber: "",
+      vin: "",
    });
 
    const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
    useEffect(() => {
       const areAllFieldsFilled = Object.values(formValues).every(
-         field => field.trim() !== ""
+         field => field.toString().trim() !== ""
       );
       setIsSubmitEnabled(areAllFieldsFilled);
    }, [formValues]);
@@ -26,8 +28,30 @@ const AddCar = () => {
       }));
    };
 
+   const addCar = async () => {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/cars/add`, {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         credentials: "include",
+         body: JSON.stringify(formValues),
+      });
+      if (!res.ok) {
+         throw new Error(await res.text());
+      }
+      return await res.text();
+   };
    const handleSubmit = async () => {
-      // API request logic here...
+      toast.promise(addCar(), {
+         pending: "Dodawanie samochodu...",
+         success: {
+            render() {
+               return "Samochód dodany pomyślnie!";
+            },
+         },
+         error: "Dodawanie samochodu nie powiodło się. Proszę spróbować ponownie.",
+      });
    };
 
    return (
@@ -41,16 +65,30 @@ const AddCar = () => {
             </HashLink>
             <form className="grid gap-4">
                <label
-                  htmlFor="carModel"
+                  htmlFor="make"
                   className="text-sm font-bold text-yellow-600"
                >
-                  Marka i model samochodu:
+                  Marka:
                </label>
                <input
                   type="text"
-                  id="carModel"
-                  name="carModel"
-                  value={formValues.carModel}
+                  id="make"
+                  name="make"
+                  value={formValues.make}
+                  onChange={handleChange}
+                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
+               />
+               <label
+                  htmlFor="color"
+                  className="text-sm font-bold text-yellow-600"
+               >
+                  Model:
+               </label>
+               <input
+                  type="text"
+                  id="model"
+                  name="model"
+                  value={formValues.model}
                   onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
@@ -62,40 +100,24 @@ const AddCar = () => {
                   Rok produkcji:
                </label>
                <input
-                  type="text"
+                  type="number"
                   id="year"
                   name="year"
                   value={formValues.year}
                   onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
-
                <label
-                  htmlFor="color"
+                  htmlFor="vin"
                   className="text-sm font-bold text-yellow-600"
                >
-                  Kolor pojazdu:
+                  VIN:
                </label>
                <input
                   type="text"
-                  id="color"
-                  name="color"
-                  value={formValues.color}
-                  onChange={handleChange}
-                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
-               />
-
-               <label
-                  htmlFor="registrationNumber"
-                  className="text-sm font-bold text-yellow-600"
-               >
-                  Numer rejestracyjny:
-               </label>
-               <input
-                  type="text"
-                  id="registrationNumber"
-                  name="registrationNumber"
-                  value={formValues.registrationNumber}
+                  id="vin"
+                  name="vin"
+                  value={formValues.vin}
                   onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
