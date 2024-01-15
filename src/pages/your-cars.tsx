@@ -1,6 +1,6 @@
 import { HashLink } from "react-router-hash-link";
 
-const History = () => {
+const YourCars = () => {
    return (
       <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
          <div className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
@@ -13,47 +13,47 @@ const History = () => {
 
             <form className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
                <h1 className="p-10 text-3xl font-bold text-yellow-600">
-                  Ostatnie naprawy
+                  Samochód 1 [ew. imie samochodu z API]
                </h1>
                <label
                   htmlFor="carModel"
                   className="text-m font-bold text-yellow-600"
                >
-                  [Data]:
+                  Marka i model samochodu:
                </label>
-               # opis usterki - koszt
+               # Tutaj chcemy dodać inputa, który będzie pobierał z API dane na
+               temat marki i modelu samochodu
                <label
-                  htmlFor="carModel"
+                  htmlFor="year"
                   className="text-m font-bold text-yellow-600"
                >
-                  [Data]:
+                  Rok produkcji:
                </label>
-               # opis usterki - koszt
+               # Tutaj chcemy dodać inputa, który będzie pobierał z API dane na
+               temat roku produkcji samochodu
                <label
-                  htmlFor="carModel"
+                  htmlFor="color"
                   className="text-m font-bold text-yellow-600"
                >
-                  [Data]:
+                  Kolor pojazdu:
                </label>
-               # opis usterki - koszt
+               # Tutaj chcemy dodać inputa, który będzie pobierał z API dane na
+               temat koloru samochodu
                <label
-                  htmlFor="carModel"
+                  htmlFor="registrationNumber"
                   className="text-m font-bold text-yellow-600"
                >
-                  [Data]:
+                  Numer rejestracyjny:
                </label>
-               # opis usterki - koszt
-               <label
-                  htmlFor="carModel"
-                  className="text-m font-bold text-yellow-600"
-               >
-                  [Data]:
-               </label>
-               # opis usterki - koszt
+               # Tutaj chcemy dodać inputa, który będzie pobierał z API dane na
+               temat numeru rejestracyjnego samochodu
                <div className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
-                  <button className="mb-4 inline-block rounded bg-bg-secondary p-10 px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:opacity-50">
-                     Pobierz pełną historię
-                  </button>
+                  <HashLink
+                     to="/your-cars/add-car"
+                     className="mb-4 inline-block rounded bg-bg-secondary p-10 px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:opacity-50"
+                  >
+                     Dodaj samochód
+                  </HashLink>
                </div>
             </form>
          </div>
@@ -61,4 +61,4 @@ const History = () => {
    );
 };
 
-export default History;
+export default YourCars;

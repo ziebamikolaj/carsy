@@ -15,6 +15,7 @@ import "/index.css";
 import AddCar from "./add-car";
 import History from "./history";
 import SetAppointment from "./set-appointment";
+import YourCars from "./your-cars";
 const queryClient = new QueryClient();
 
 const domNode = document.getElementById("root");
@@ -35,7 +36,8 @@ if (domNode) {
                   path="/set-appointment"
                   element={<SetAppointment />}
                ></Route>
-               <Route path="/add-car" element={<AddCar />}></Route>
+               <Route path="/your-cars" element={<YourCars />}></Route>
+               <Route path="/your-cars/add-car" element={<AddCar />}></Route>
                <Route path="/history" element={<History />}></Route>
 
                <Route path="/" element={<Account />} />

@@ -42,7 +42,10 @@ const SetAppointment = () => {
             </HashLink>
 
             <form className="grid gap-4">
-               <label htmlFor="phoneNumber" className="text-sm font-bold">
+               <label
+                  htmlFor="phoneNumber"
+                  className="text-sm font-bold text-yellow-600"
+               >
                   Numer telefonu:
                </label>
                <input
@@ -54,11 +57,14 @@ const SetAppointment = () => {
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
 
-               <label htmlFor="date" className="text-sm font-bold">
+               <label
+                  htmlFor="date"
+                  className="text-sm font-bold text-yellow-600"
+               >
                   Data:
                </label>
                <input
-                  type="text"
+                  type="date"
                   id="date"
                   name="date"
                   value={formValues.date}
@@ -66,7 +72,10 @@ const SetAppointment = () => {
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
 
-               <label htmlFor="time" className="text-sm font-bold">
+               <label
+                  htmlFor="time"
+                  className="text-sm font-bold text-yellow-600"
+               >
                   Godzina:
                </label>
                <input
@@ -78,7 +87,10 @@ const SetAppointment = () => {
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
 
-               <label htmlFor="carModel" className="text-sm font-bold">
+               <label
+                  htmlFor="carModel"
+                  className="text-sm font-bold text-yellow-600"
+               >
                   Marka i model samochodu:
                </label>
                <input
@@ -90,7 +102,10 @@ const SetAppointment = () => {
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
                />
 
-               <label htmlFor="issueDescription" className="text-sm font-bold">
+               <label
+                  htmlFor="issueDescription"
+                  className="text-sm font-bold text-yellow-600"
+               >
                   Krótki opis usterki:
                </label>
                <input
@@ -106,7 +121,7 @@ const SetAppointment = () => {
                   <button
                      type="submit"
                      disabled={!isSubmitEnabled}
-                     className={`mt-4 w-full rounded bg-bg-primary px-4 py-2 text-lg font-bold hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-nav-bg ${
+                     className={`mt-4 w-full rounded bg-bg-primary px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-nav-bg hover:opacity-50${
                         isSubmitEnabled ? "" : "cursor-not-allowed opacity-50"
                      }`}
                      onClick={e => {
