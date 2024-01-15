@@ -1,5 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+
+type Car = {
+   id: string;
+   make: string;
+   model: string;
+   year: number;
+   vin: string;
+};
+interface serviceTypeItem {
+   serviceTypeID: number;
+   name: string;
+   price: number;
+}
 
 const SetAppointment = () => {
    const [formValues, setFormValues] = useState({
@@ -8,6 +22,19 @@ const SetAppointment = () => {
       time: "",
       carModel: "",
       issueDescription: "",
+   });
+
+   const { data: myCars } = useQuery<Car[]>({
+      queryKey: ["myCars"],
+      queryFn: async () => {
+         const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/cars/mycars`,
+            {
+               credentials: "include",
+            }
+         );
+         return res.json() as Promise<Car[]>;
+      },
    });
 
    const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
@@ -26,7 +53,18 @@ const SetAppointment = () => {
          [name]: value,
       }));
    };
-
+   const { data: priceList } = useQuery<serviceTypeItem[]>({
+      queryKey: ["priceList"],
+      queryFn: async () => {
+         const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/servicetype/all`,
+            {
+               credentials: "include",
+            }
+         );
+         return res.json() as Promise<serviceTypeItem[]>;
+      },
+   });
    const handleSubmit = async () => {
       // API request logic here...
    };
@@ -49,7 +87,7 @@ const SetAppointment = () => {
                   Numer telefonu:
                </label>
                <input
-                  type="text"
+                  type="tel"
                   id="phoneNumber"
                   name="phoneNumber"
                   value={formValues.phoneNumber}
@@ -79,9 +117,11 @@ const SetAppointment = () => {
                   Godzina:
                </label>
                <input
-                  type="text"
+                  type="time"
                   id="time"
                   name="time"
+                  min="7"
+                  max="17"
                   value={formValues.time}
                   onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
@@ -91,31 +131,48 @@ const SetAppointment = () => {
                   htmlFor="carModel"
                   className="text-sm font-bold text-yellow-600"
                >
-                  Marka i model samochodu:
+                  Samochód:
                </label>
-               <input
-                  type="text"
+               <select
                   id="carModel"
                   name="carModel"
-                  value={formValues.carModel}
-                  onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
-               />
+               >
+                  {myCars?.length === 0 ? (
+                     <option value="addCar">
+                        <HashLink
+                           to={"/your-cars/add-car"}
+                           className="text-font-primary"
+                        >
+                           Add a car!
+                        </HashLink>
+                     </option>
+                  ) : (
+                     myCars?.map(car => (
+                        <option key={car.id} value={car.id}>
+                           {car.make} {car.model} {car.year}r.
+                        </option>
+                     ))
+                  )}
+               </select>
 
                <label
                   htmlFor="issueDescription"
                   className="text-sm font-bold text-yellow-600"
                >
-                  Krótki opis usterki:
+                  Serwis:
                </label>
-               <input
-                  type="text"
+               <select
                   id="issueDescription"
                   name="issueDescription"
-                  value={formValues.issueDescription}
-                  onChange={handleChange}
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
-               />
+               >
+                  {priceList?.map(service => (
+                     <option key={service.name} value={service.serviceTypeID}>
+                        {service.name} - {service.price}zł
+                     </option>
+                  ))}
+               </select>
 
                <div className="group relative">
                   <button

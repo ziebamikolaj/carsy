@@ -38,21 +38,21 @@ const SignIn = () => {
    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       toast.promise(mutation.mutateAsync({ username, password }), {
-         pending: "Signing in...",
+         pending: "Logowanie...",
          success: {
             render() {
                navigate("/account");
                queryClient.invalidateQueries({ queryKey: ["authCheck"] });
-               return "Signed in successfully!";
+               return "Zalogowano!";
             },
          },
-         error: "Sign in failed. Please try again.",
+         error: "Logowanie nie powiodło się, spróbuj ponownie.",
       });
    };
 
    return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center  text-font-primary">
-         <h2 className="mb-4 text-3xl font-bold">Sign In</h2>
+         <h2 className="mb-4 text-3xl font-bold">Zaloguj</h2>
          <form
             className="mb-4 rounded-xl bg-bg-secondary px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
@@ -77,7 +77,7 @@ const SignIn = () => {
                   className="mb-2 block text-sm font-bold"
                   htmlFor="password"
                >
-                  Password
+                  Hasło
                </label>
                <input
                   className="focus:shadow-outline w-full appearance-none rounded bg-input-dark px-3 py-2 leading-tight shadow focus:outline-none"
@@ -91,16 +91,16 @@ const SignIn = () => {
                className="focus:shadow-outline rounded bg-bg-primary px-4 py-2 font-bold hover:bg-nav-bg focus:outline-none"
                type="submit"
             >
-               Sign In
+               Zaloguj
             </button>
             <div className="mt-2 ">
-               <p>Not signed up yet?</p>
+               <p>Jeszcze nie masz konta?</p>
                <p>
                   <HashLink
                      className="ml-1 text-yellow-200 hover:text-yellow-300"
                      to="/signup"
                   >
-                     Sign Up
+                     Załóż je!
                   </HashLink>
                </p>
             </div>

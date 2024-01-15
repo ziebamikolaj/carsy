@@ -11,7 +11,14 @@ module.exports = {
          parserOptions: {
             project: ["./tsconfig.json"],
          },
-         extends: ["next/core-web-vitals", "plugin:@next/next/recommended"],
+         extends: [
+            "next/core-web-vitals",
+            "plugin:@next/next/recommended",
+            "plugin:react-hooks/recommended",
+            "plugin:@typescript-eslint/recommended",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking",
+            "prettier",
+         ],
          files: ["*.ts", "*.tsx"],
          rules: {
             "react-hooks/rules-of-hooks": "error",

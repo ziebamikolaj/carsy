@@ -53,11 +53,11 @@ const SignUp = () => {
          password,
       };
       toast.promise(signUp(credentials), {
-         pending: "Signing up...",
+         pending: "Rejestruje...",
          success: {
             render() {
                navigate("/verify");
-               return "Signed up successfully!";
+               return "Zarejestrowano!";
             },
          },
          error: {
@@ -70,7 +70,7 @@ const SignUp = () => {
    };
    return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-bg-primary text-center text-font-primary">
-         <h2 className="mb-4 text-3xl font-bold">Sign Up</h2>
+         <h2 className="mb-4 text-3xl font-bold">Zarejestruj się</h2>
          <form
             className="mb-4 rounded-xl bg-bg-secondary px-8 pb-8 pt-6 shadow-md"
             onSubmit={handleSubmit}
@@ -107,7 +107,7 @@ const SignUp = () => {
                   className="mb-2 block text-sm font-bold"
                   htmlFor="password"
                >
-                  Password
+                  Hasło
                </label>
                <input
                   className="focus:shadow-outline w-full  rounded bg-input-dark px-3 py-2 leading-tight focus:outline-none"
@@ -126,7 +126,7 @@ const SignUp = () => {
                   className="mb-2 block text-sm font-bold"
                   htmlFor="confirmPassword"
                >
-                  Confirm Password
+                  Powtórz hasło
                </label>
                <input
                   className={`w-full rounded bg-input-dark  px-3 py-2 leading-tight focus:outline-none ${
@@ -143,7 +143,7 @@ const SignUp = () => {
                />
                {!passwordMatch && (
                   <p className="text-xs italic text-red-500">
-                     Passwords do not match.
+                     Hasła nie pasują do siebie.
                   </p>
                )}
             </div>
@@ -151,7 +151,7 @@ const SignUp = () => {
                className="focus:shadow-outline rounded bg-bg-primary px-4 py-2 font-bold text-white focus:outline-none"
                type="submit"
             >
-               Sign Up
+               Zarejestruj
             </button>
          </form>
       </div>

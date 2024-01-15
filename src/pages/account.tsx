@@ -1,11 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import { HashLink } from "react-router-hash-link";
 
 const Account = () => {
+   const { data: user } = useQuery<string>({
+      queryKey: ["authCheck"],
+   });
+
    return (
       <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
          <h2 className="mb-6 mt-4 text-center text-6xl font-bold text-yellow-600">
-
-            Witaj użytkowniku! (imie z API)
+            Witaj {user}!
          </h2>
 
          <div className="flex flex-col gap-4 text-center font-bold text-font-primary">
