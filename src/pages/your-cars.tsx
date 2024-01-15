@@ -1,10 +1,6 @@
 import { HashLink } from "react-router-hash-link";
 
 const YourCars = () => {
-   const handleSubmit = async () => {
-      // API request logic here...
-   };
-
    return (
       <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
          <div className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
