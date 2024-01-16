@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import { toast } from "react-toastify";
 
 type Car = {
    id: string;
@@ -9,19 +11,58 @@ type Car = {
    year: number;
    vin: string;
 };
+type dataToSend = {
+   date: string;
+   serviceTypeId: number;
+   carId: number;
+};
 interface serviceTypeItem {
    serviceTypeID: number;
    name: string;
    price: number;
 }
-
+interface appointmentData {
+   date: string;
+   time: string;
+   carModel: string;
+   serviceTypeID: string;
+}
+const setAppointment = async (data: appointmentData) => {
+   let dateVar = new Date(data.date);
+   let timeVar = data.time;
+   const combinedDateTime = format(
+      new Date(
+         dateVar.getFullYear(),
+         dateVar.getMonth(),
+         dateVar.getDate(),
+         parseInt(timeVar.split(":")[0])
+      ),
+      "yyyy-MM-dd HH"
+   );
+   const formValuesToSend: dataToSend = {
+      date: combinedDateTime,
+      serviceTypeId: parseInt(data.serviceTypeID),
+      carId: parseInt(data.carModel),
+   };
+   const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/carhistory/appointment`,
+      {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         credentials: "include",
+         body: JSON.stringify(formValuesToSend),
+      }
+   );
+   return res;
+};
 const SetAppointment = () => {
    const [formValues, setFormValues] = useState({
-      phoneNumber: "",
       date: "",
       time: "",
       carModel: "",
-      issueDescription: "",
+      serviceTypeID: "",
    });
 
    const { data: myCars } = useQuery<Car[]>({
@@ -46,7 +87,36 @@ const SetAppointment = () => {
       setIsSubmitEnabled(areAllFieldsFilled);
    }, [formValues]);
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const handleSubmit = async () => {
+      toast.promise(
+         setAppointment(formValues).then(res => {
+            if (res.ok) {
+               return "Wizyta umówiona!";
+            } else {
+               return res.text().then(text => {
+                  throw new Error(text || "Wystąpił błąd");
+               });
+            }
+         }),
+         {
+            pending: "Umawianie wizyty...",
+            success: {
+               render({ data }: { data: string }) {
+                  return data;
+               },
+            },
+            error: {
+               render({ data }: { data: Error }) {
+                  return data.message;
+               },
+            },
+         }
+      );
+   };
+
+   const handleChange = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+   ) => {
       const { name, value } = e.target;
       setFormValues(prevState => ({
          ...prevState,
@@ -65,10 +135,6 @@ const SetAppointment = () => {
          return res.json() as Promise<serviceTypeItem[]>;
       },
    });
-   const handleSubmit = async () => {
-      // API request logic here...
-   };
-
    return (
       <div className="flex h-screen flex-col items-center justify-center bg-bg-primary">
          <div className="flex flex-col items-center justify-center rounded-xl bg-nav-bg p-5 text-font-primary">
@@ -80,21 +146,6 @@ const SetAppointment = () => {
             </HashLink>
 
             <form className="grid gap-4">
-               <label
-                  htmlFor="phoneNumber"
-                  className="text-sm font-bold text-yellow-600"
-               >
-                  Numer telefonu:
-               </label>
-               <input
-                  type="tel"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  value={formValues.phoneNumber}
-                  onChange={handleChange}
-                  className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
-               />
-
                <label
                   htmlFor="date"
                   className="text-sm font-bold text-yellow-600"
@@ -137,7 +188,10 @@ const SetAppointment = () => {
                   id="carModel"
                   name="carModel"
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
+                  onChange={handleChange}
+                  value={formValues.carModel}
                >
+                  <option disabled></option>
                   {myCars?.length === 0 ? (
                      <option value="addCar">
                         <HashLink
@@ -163,10 +217,13 @@ const SetAppointment = () => {
                   Serwis:
                </label>
                <select
-                  id="issueDescription"
-                  name="issueDescription"
+                  id="serviceTypeID"
+                  name="serviceTypeID"
                   className="rounded bg-input-dark px-3 py-2 leading-tight text-font-primary focus:outline-none focus:ring-2 focus:ring-nav-bg"
+                  onChange={handleChange}
+                  value={formValues.serviceTypeID}
                >
+                  <option disabled></option>
                   {priceList?.map(service => (
                      <option key={service.name} value={service.serviceTypeID}>
                         {service.name} - {service.price}zł

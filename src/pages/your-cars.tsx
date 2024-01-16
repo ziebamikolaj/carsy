@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { HashLink } from "react-router-hash-link";
 import { toast } from "react-toastify";
 
@@ -11,6 +11,7 @@ type Car = {
 };
 
 const YourCars = () => {
+   const queryClient = useQueryClient();
    const { data: myCars } = useQuery<Car[]>({
       queryKey: ["myCars"],
       queryFn: async () => {
@@ -43,6 +44,7 @@ const YourCars = () => {
          pending: "Usuwanie samochodu...",
          success: {
             render() {
+               queryClient.invalidateQueries({ queryKey: ["myCars"] });
                return "Samochód usunięty pomyślnie!";
             },
          },
@@ -104,12 +106,14 @@ const YourCars = () => {
                                  {car.vin}
                               </div>
                            </div>
-                           <img
-                              src="/bin.png"
-                              alt="Delete"
-                              onClick={() => handleDeleteCar(car.id)}
-                              className="mt-4 w-12  cursor-pointer"
-                           />
+                           <div className="-mt-5 flex w-full items-end justify-end">
+                              <img
+                                 src="/bin.png"
+                                 alt="Delete"
+                                 onClick={() => handleDeleteCar(car.id)}
+                                 className="mt-4 w-8 cursor-pointer"
+                              />
+                           </div>
                         </li>
                      ))}
                   </ol>

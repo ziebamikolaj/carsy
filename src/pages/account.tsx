@@ -29,7 +29,7 @@ const Account = () => {
                to="/history"
                className="rounded bg-nav-bg px-4 py-2 text-3xl text-font-primary transition duration-300 ease-in-out hover:opacity-50"
             >
-               Twoja historia
+               Twoje wizyty
             </HashLink>
          </div>
       </div>
