@@ -6,6 +6,17 @@ const AboutUs = () => {
    const navigate = useNavigate();
    const { data: isLoggedIn } = useQuery({
       queryKey: ["authCheck"],
+      queryFn: async () => {
+         const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/check`, {
+            credentials: "include",
+         });
+         const resText = await res.text();
+         if (res.ok) {
+            return resText;
+         } else {
+            return false;
+         }
+      },
    });
 
    const handleReservation = () => {
