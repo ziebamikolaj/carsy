@@ -32,7 +32,7 @@ const History = () => {
       queryKey: ["carHistory"],
       queryFn: async () => {
          const res = await fetch(
-            `${import.meta.env.VITE_API_URL}/carhistory/all`,
+            `${import.meta.env.VITE_API_URL}/carhistory/my-history`,
             {
                credentials: "include",
                headers: {
@@ -156,12 +156,24 @@ const History = () => {
                      </li>
                   ))}
                </ul>
-               <button
-                  className="mt-4 rounded bg-bg-secondary px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:opacity-50"
-                  onClick={() => setShowFullHistory(!showFullHistory)}
-               >
-                  {showFullHistory ? "Pokaż mniej" : "Pobierz pełną historię"}
-               </button>
+               {carHistory?.length === 0 && (
+                  <label
+                     htmlFor="carModel"
+                     className="text-m font-bold text-yellow-600"
+                  >
+                     Nie masz jeszcze żadnych wizyt
+                  </label>
+               )}
+               {carHistory != undefined && carHistory?.length > 5 && (
+                  <button
+                     className="mt-4 rounded bg-bg-secondary px-4 py-2 text-lg font-bold text-font-primary transition duration-300 ease-in-out hover:opacity-50"
+                     onClick={() => setShowFullHistory(!showFullHistory)}
+                  >
+                     {showFullHistory
+                        ? "Pokaż mniej"
+                        : "Pobierz pełną historię"}
+                  </button>
+               )}
             </div>
          </div>
       </div>
