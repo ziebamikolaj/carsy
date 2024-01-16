@@ -3,11 +3,11 @@ interface TimetableItem {
 }
 
 const timetable: TimetableItem[] = [
-   { Poniedziałek: "7:00 - 17.30" },
-   { Wtorek: "7:00 - 17.30" },
-   { Środa: "7:00 - 17.30" },
-   { Czwartek: "7:00 - 16.30" },
-   { Piątek: "7:00 - 13:00" },
+   { Poniedziałek: "7:00 - 17.00" },
+   { Wtorek: "7:00 - 17.00"  },
+   { Środa: "7:00 - 17.00"  },
+   { Czwartek: "7:00 - 17.00"  },
+   { Piątek: "7:00 - 17.00"  },
 ];
 const displayTimetable = (timetable: TimetableItem[]) => {
    return (
