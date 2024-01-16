@@ -1,12 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Reservation = () => {
    const navigate = useNavigate();
+   const { data: isLoggedIn } = useQuery({
+      queryKey: ["authCheck"],
+   });
 
    const handleReservation = () => {
+      if (isLoggedIn) {
+         navigate("/set-appointment");
+         return;
+      }
       toast.info("Musisz najpierw się zalogować!");
-      navigate("/set-appointment");
+      navigate("/signin");
    };
 
    return (
